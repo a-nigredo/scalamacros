@@ -2,11 +2,10 @@ package scala.macros.internal
 package engines.scalac
 package trees
 
-import scala.collection.mutable
-import scala.reflect.internal.{Flags => gf}
-import scala.reflect.internal.util.Collections._
 import scala.macros.inputs._
 import scala.macros.internal.engines.scalac.inputs._
+import scala.reflect.internal.util.Collections._
+import scala.reflect.internal.{Flags => gf}
 
 trait Abstracts extends scala.macros.trees.Abstracts with Positions { self: Universe =>
   import treeCompanions._
@@ -619,16 +618,7 @@ trait Abstracts extends scala.macros.trees.Abstracts with Positions { self: Univ
           ctor: Ctor.Primary,
           templ: Template): Defn.Class = ???
       def unapply(gtree: Any): Option[(List[Mod], Type.Name, List[Type.Param], Ctor.Primary, Template)] = {
-        gtree match {
-          case t: g.TypeTree =>
-            val symbol = t.symbol
-            val mods = new mutable.ListBuffer[Mod]()
-            if(symbol.isCase) mods.+=(ModCase())
-            if(symbol.isAbstractClass) mods.+=(ModAbstract())
-            val tp = symbol.decodedName
-            None
-          case _ => None
-        }
+        ???
       }
     }
 

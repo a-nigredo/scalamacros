@@ -13,7 +13,8 @@ object Difference {
       val fnName = f.name.value
       val v1 = Term.fresh(s"${fnName}1")
       val v2 = Term.fresh(s"${fnName}2")
-      println(f.info.=:=(Type.Name("String")))
+      val int = Type.Name("_root_.scala.Int")
+
       q"""
            val $v1 = $lastState.${Term.Name(fnName)}
            val $v2 = $newState.${Term.Name(fnName)}

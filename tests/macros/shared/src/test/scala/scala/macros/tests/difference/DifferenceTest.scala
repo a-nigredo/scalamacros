@@ -10,9 +10,17 @@ class DifferenceTest {
 
   case class User(name: String, pwd: String, age: Int = 1, isMerried: Boolean = false)
 
+  case class User2(name: Option[String], pwd: String, age: Int = 1, isMerried: Boolean = false)
+
   @Test
   def simpleCaseClassAndPrimitives(): Unit = {
     val diff = Difference(User("Andrey", "Ivanov"), User("Ivanov", "Andrey", 1, true))
+    assertEquals(Diff(Some("User"), List(DiffValue("Andrey", "Ivanov"), DiffValue("Ivanov", "Andrey"), DiffValue(false, true))), diff)
+  }
+
+  @Test
+  def simpleCaseClassAndPrimitivesInContext(): Unit = {
+    val diff = Difference(User2(Option("Andrey"), "Ivanov"), User2(Option("Ivanov"), "Andrey", 1, true))
     assertEquals(Diff(Some("User"), List(DiffValue("Andrey", "Ivanov"), DiffValue("Ivanov", "Andrey"), DiffValue(false, true))), diff)
   }
 }
